@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Calculator, Shield, Zap, Users, Check, X, ExternalLink, Download, Twitter, Server, Globe, Lock, Star, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -243,6 +242,48 @@ const Index = () => {
             <h2 className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto">
               Use our free calculator to see exactly how much you can save by migrating from shared hosting to Cloudways managed cloud hosting.
             </h2>
+          </div>
+
+          {/* Navigation to Articles */}
+          <div className="max-w-4xl mx-auto mb-12">
+            <h3 className="text-2xl font-bold text-center mb-6">Expert Guides & Resources</h3>
+            <div className="grid md:grid-cols-3 gap-4">
+              <Link 
+                to="/articles/ten-reasons" 
+                className="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-transparent hover:border-blue-200 focus:border-blue-500 focus:outline-none"
+                aria-label="Read about 10 reasons to move from shared hosting to cloud hosting"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <Server className="w-6 h-6 text-blue-600" />
+                  <h4 className="font-bold text-gray-900">10 Reasons to Switch</h4>
+                </div>
+                <p className="text-gray-600 text-sm">Discover why cloud hosting outperforms shared hosting in every way</p>
+              </Link>
+              
+              <Link 
+                to="/articles/migration-guide" 
+                className="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-transparent hover:border-blue-200 focus:border-blue-500 focus:outline-none"
+                aria-label="Learn how to migrate your website to Cloudways step by step"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <Globe className="w-6 h-6 text-green-600" />
+                  <h4 className="font-bold text-gray-900">Migration Guide</h4>
+                </div>
+                <p className="text-gray-600 text-sm">Step-by-step guide to migrate your website with zero downtime</p>
+              </Link>
+              
+              <Link 
+                to="/articles/cost-comparison" 
+                className="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow border-2 border-transparent hover:border-blue-200 focus:border-blue-500 focus:outline-none"
+                aria-label="Compare Cloudways costs with SiteGround and Bluehost hosting"
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <Lock className="w-6 h-6 text-purple-600" />
+                  <h4 className="font-bold text-gray-900">Cost Comparison</h4>
+                </div>
+                <p className="text-gray-600 text-sm">Real cost analysis vs. SiteGround, Bluehost, and other providers</p>
+              </Link>
+            </div>
           </div>
 
           {/* Introduction */}
@@ -587,7 +628,7 @@ const Index = () => {
                       <p className="text-sm text-gray-600">E-commerce Store Owner</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1 mb-2">
+                  <div className="flex items-center gap-1 mb-2" aria-label="5 star rating">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                     ))}
@@ -608,7 +649,7 @@ const Index = () => {
                       <p className="text-sm text-gray-600">Digital Agency</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1 mb-2">
+                  <div className="flex items-center gap-1 mb-2" aria-label="5 star rating">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                     ))}
@@ -629,7 +670,7 @@ const Index = () => {
                       <p className="text-sm text-gray-600">Food Blogger</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-1 mb-2">
+                  <div className="flex items-center gap-1 mb-2" aria-label="5 star rating">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                     ))}
