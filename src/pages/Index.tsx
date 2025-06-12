@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Calculator, Shield, Zap, Users, Check, X, ExternalLink, Download, Twitter, Server, Globe, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -77,7 +78,7 @@ const Index = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
-    };
+    }; 
   }, []);
 
   // Enhanced exit intent detection
