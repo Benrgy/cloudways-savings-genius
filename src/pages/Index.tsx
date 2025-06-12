@@ -10,7 +10,7 @@ import { Separator } from '@/components/ui/separator';
 import { toast } from '@/hooks/use-toast';
 
 const Index = () => {
-  // All calculator state
+  // Advanced calculator state
   const [currentCost, setCurrentCost] = useState<string>('');
   const [visitors, setVisitors] = useState<string>('');
   const [storage, setStorage] = useState<string>('');
@@ -153,6 +153,30 @@ const Index = () => {
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Cloudways starts at $14/month and often costs less than premium shared hosting when factoring in included features like SSL, CDN, and backups."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does caching improve website speed on Cloudways?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cloudways uses Varnish cache, Redis, and browser caching to serve content from memory, reducing server load by up to 99% and dramatically improving load times."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What security features does Cloudways provide?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cloudways includes firewalls, bot protection, SSL certificates, malware scanning, automated backups, 2FA, and IP whitelisting for comprehensive security."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I monitor and scale my Cloudways server?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, the Cloudways dashboard provides real-time monitoring of CPU, RAM, and bandwidth, plus one-click vertical scaling to handle traffic spikes."
         }
       }
     ]
@@ -617,7 +641,7 @@ const Index = () => {
             </div>
           </div>
 
-          {/* EMBEDDED EXPERT ARTICLES SECTION - FINALLY IMPLEMENTED */}
+          {/* Expert Articles Section */}
           <section className="mb-16">
             <h2 className="text-3xl font-bold text-center mb-8">Expert Insights & Guides</h2>
             
@@ -750,6 +774,97 @@ const Index = () => {
             </div>
           </section>
 
+          {/* Optimization Guide Section */}
+          <section className="mb-16">
+            <h2 className="text-3xl font-bold text-center mb-8">How to Optimize Your Cloudways Hosting in 2025</h2>
+            
+            <div className="grid lg:grid-cols-2 gap-8">
+              <Card className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Zap className="w-6 h-6 text-blue-600" />
+                  <h3 className="text-xl font-bold">Performance Optimization</h3>
+                </div>
+                <div className="space-y-3 text-gray-700">
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Enable Varnish & Redis Caching</h4>
+                    <p className="text-sm">Activate both Varnish (page caching) and Redis (object caching) in your Cloudways dashboard for up to 99% cache hit rates and lightning-fast load times.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Cloudflare Enterprise CDN</h4>
+                    <p className="text-sm">Enable the built-in Cloudflare Enterprise CDN to serve content from global edge locations, reducing TTFB to under 200ms worldwide.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Optimize PHP & MySQL Settings</h4>
+                    <p className="text-sm">Tune PHP memory limits, execution time, and MySQL query cache based on your site's specific requirements using the server management panel.</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Shield className="w-6 h-6 text-green-600" />
+                  <h3 className="text-xl font-bold">Security Best Practices</h3>
+                </div>
+                <div className="space-y-3 text-gray-700">
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Enable Bot Protection</h4>
+                    <p className="text-sm">Activate automatic bot protection to block brute force attacks, DDoS attempts, and malicious traffic before it reaches your server.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Configure IP Whitelisting</h4>
+                    <p className="text-sm">Restrict SSH/SFTP access to trusted IP addresses only, and enable two-factor authentication for all admin accounts.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Automated Malware Scanning</h4>
+                    <p className="text-sm">Use built-in malware protection with one-click removal, plus schedule daily security scans and automated backups.</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Server className="w-6 h-6 text-purple-600" />
+                  <h3 className="text-xl font-bold">Server Monitoring & Scaling</h3>
+                </div>
+                <div className="space-y-3 text-gray-700">
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Real-Time Resource Monitoring</h4>
+                    <p className="text-sm">Monitor CPU, RAM, disk usage, and bandwidth in real-time through the Cloudways dashboard. Set up CloudwaysBot alerts for resource thresholds.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">One-Click Vertical Scaling</h4>
+                    <p className="text-sm">Scale your server resources instantly during traffic spikes or seasonal increases with just one click—no downtime required.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Choose the Right Cloud Provider</h4>
+                    <p className="text-sm">Select DigitalOcean for cost-effectiveness, AWS for enterprise features, or Google Cloud for maximum performance based on your needs.</p>
+                  </div>
+                </div>
+              </Card>
+
+              <Card className="p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Globe className="w-6 h-6 text-indigo-600" />
+                  <h3 className="text-xl font-bold">WordPress-Specific Tips</h3>
+                </div>
+                <div className="space-y-3 text-gray-700">
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Breeze Plugin Configuration</h4>
+                    <p className="text-sm">Install and configure the Breeze caching plugin for WordPress with minification, lazy loading, and font optimization enabled.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Database Optimization</h4>
+                    <p className="text-sm">Use tools like WP-Optimize to clean database tables, remove spam comments, and optimize images for better performance.</p>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">Staging & SafeUpdates</h4>
+                    <p className="text-sm">Always test plugin and theme updates on staging environments first, then use SafeUpdates for automatic rollback if issues occur.</p>
+                  </div>
+                </div>
+              </Card>
+            </div>
+          </section>
+
           {/* Enhanced FAQ Section */}
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions About Cloudways</h2>
@@ -791,15 +906,22 @@ const Index = () => {
 
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-3">What cloud providers does Cloudways support?</h3>
-                  <p className="text-gray-700">Cloudways supports five major cloud providers: DigitalOcean, AWS (Amazon Web Services), Google Cloud Platform, Linode, and Vultr. Each provider offers different advantages - DigitalOcean for simplicity and cost-effectiveness, AWS for enterprise features, Google Cloud for performance, Linode for developer-friendly tools, and Vultr for high-frequency computing.</p>
+                  <h3 className="text-xl font-bold mb-3">How does caching improve website speed on Cloudways?</h3>
+                  <p className="text-gray-700">Cloudways uses a multi-layered caching approach including Varnish (HTTP accelerator), Redis/Memcached (object caching), and browser caching. This combination can serve up to 99% of requests directly from cache, dramatically reducing server load and improving load times. The built-in Breeze plugin for WordPress adds additional optimization features like minification and lazy loading.</p>
                 </CardContent>
               </Card>
 
               <Card>
                 <CardContent className="p-6">
-                  <h3 className="text-xl font-bold mb-3">Can I scale my Cloudways server resources?</h3>
-                  <p className="text-gray-700">Yes, Cloudways offers vertical scaling that allows you to increase or decrease your server resources (RAM, CPU, storage) with just a few clicks. This is perfect for handling traffic spikes during sales, viral content, or seasonal increases. You can scale up instantly, and scaling down is available on most cloud providers (some require server cloning).</p>
+                  <h3 className="text-xl font-bold mb-3">What security features does Cloudways provide?</h3>
+                  <p className="text-gray-700">Cloudways includes comprehensive security features: dedicated firewalls, bot protection against brute force attacks, free SSL certificates, automated malware scanning with one-click removal, daily backups with one-click restore, two-factor authentication, IP whitelisting for SSH access, and compliance options for PCI DSS and HIPAA requirements.</p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold mb-3">Can I monitor and scale my Cloudways server resources?</h3>
+                  <p className="text-gray-700">Yes, the Cloudways dashboard provides comprehensive real-time monitoring of CPU, RAM, disk usage, and bandwidth usage. You can view both summary and detailed analytics per application. For scaling, Cloudways offers one-click vertical scaling to increase resources instantly during traffic spikes. CloudwaysBot sends alerts when you approach resource limits.</p>
                 </CardContent>
               </Card>
             </div>
