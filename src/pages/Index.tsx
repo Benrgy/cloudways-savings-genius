@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Calculator, Shield, Zap, Users, Check, X, ExternalLink, Download, Twitter, Server, Globe, Lock } from 'lucide-react';
+import { Calculator, Shield, Zap, Users, Check, X, ExternalLink, Download, Twitter, Server, Globe, Lock, Star, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -10,6 +10,7 @@ import { Separator } from '@/components/ui/separator';
 import { toast } from '@/hooks/use-toast';
 
 const Index = () => {
+  // All calculator state
   const [currentCost, setCurrentCost] = useState<string>('');
   const [visitors, setVisitors] = useState<string>('');
   const [storage, setStorage] = useState<string>('');
@@ -20,10 +21,12 @@ const Index = () => {
   const [ramRequired, setRamRequired] = useState<string>('');
   const [environments, setEnvironments] = useState<string>('');
   const [backupFreq, setBackupFreq] = useState<string>('');
+  
+  // UI state
   const [showExitIntent, setShowExitIntent] = useState(false);
   const [showStickyBar, setShowStickyBar] = useState(false);
 
-  // Enhanced Cloudways pricing calculation with more accurate logic
+  // Enhanced pricing calculation
   const calculateCloudwaysCost = () => {
     const visitorCount = visitors;
     const storageGB = parseInt(storage) || 0;
@@ -31,26 +34,22 @@ const Index = () => {
     const websiteCount = parseInt(websites) || 1;
     const ram = ramRequired;
     
-    // More sophisticated pricing logic
     let baseCost = 14; // DO 1GB plan
     
-    // Traffic-based upgrades
     if (visitorCount === '10-50k' || storageGB > 25 || websiteCount > 3) {
-      baseCost = 14; // Still DO 1GB for moderate traffic
+      baseCost = 14;
     }
     if (visitorCount === '50k-100k' || storageGB > 50 || ram === '4GB' || websiteCount > 5 || bandwidthGB > 1000) {
-      baseCost = 28; // Linode 2GB
+      baseCost = 28;
     }
     if (visitorCount === '100k+' || storageGB > 100 || ram === '8GB+' || websiteCount > 10 || bandwidthGB > 2000) {
-      baseCost = 56; // Linode 4GB
+      baseCost = 56;
     }
     
-    // Compliance costs
     if (compliance === 'PCI' || compliance === 'HIPAA') {
       baseCost += 20;
     }
     
-    // Multiple environment costs
     const envCount = parseInt(environments) || 1;
     if (envCount > 1) {
       baseCost += (envCount - 1) * 14;
@@ -64,24 +63,24 @@ const Index = () => {
   const savings = currentCostNum > 0 ? Math.max(0, currentCostNum - cloudwaysCost) : 0;
   const savingsPercentage = currentCostNum > 0 ? Math.round((savings / currentCostNum) * 100) : 0;
 
-  // Sticky bar visibility with improved logic
+  // Sticky bar functionality
   useEffect(() => {
     const handleScroll = () => {
-      const shouldShow = window.scrollY > 800 && window.innerWidth <= 768; // Only show on mobile
+      const shouldShow = window.scrollY > 800 && window.innerWidth <= 768;
       setShowStickyBar(shouldShow);
     };
     
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleScroll);
-    handleScroll(); // Check initial state
+    handleScroll();
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
-    }; 
+    };
   }, []);
 
-  // Enhanced exit intent detection
+  // Exit intent detection
   useEffect(() => {
     let exitIntentShown = false;
     
@@ -107,11 +106,11 @@ const Index = () => {
   const handleLeadMagnet = () => {
     toast({ 
       title: "Checklist Downloaded!", 
-      description: "Your free migration checklist has been sent to your email. Check your inbox!" 
+      description: "Your free migration checklist has been sent to your email." 
     });
   };
 
-  // Enhanced FAQ Schema with more comprehensive data
+  // Enhanced FAQ Schema
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -121,23 +120,23 @@ const Index = () => {
         "name": "How do I migrate my website to Cloudways?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Cloudways offers free migration services for new customers. Simply sign up for an account, submit a migration request through your dashboard, and their expert team will handle the entire process within 24-48 hours with zero downtime. No technical skills required - they handle everything from file transfers to database migration."
+          "text": "Cloudways offers free migration services for new customers. Simply sign up, submit a migration request, and their experts handle everything within 24-48 hours with zero downtime."
         }
       },
       {
-        "@type": "Question", 
+        "@type": "Question",
         "name": "Is Cloudways shared hosting?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No, Cloudways is managed cloud hosting, not shared hosting. You get dedicated cloud server resources from top providers like AWS, Google Cloud, DigitalOcean, and Linode. This means better performance, security, and reliability compared to traditional shared hosting where resources are shared among multiple websites."
+          "text": "No, Cloudways is managed cloud hosting with dedicated resources from AWS, Google Cloud, DigitalOcean, and Linode for better performance and reliability."
         }
       },
       {
         "@type": "Question",
         "name": "What are the main benefits of moving from shared hosting to Cloudways?",
         "acceptedAnswer": {
-          "@type": "Answer", 
-          "text": "Key benefits include: 3x faster loading speeds with dedicated resources, 24/7 expert support from cloud specialists, automatic daily backups with one-click restore, free SSL certificates, built-in CDN for global performance, advanced security with firewalls and malware protection, easy scalability during traffic spikes, and compliance options for PCI/HIPAA requirements."
+          "@type": "Answer",
+          "text": "Benefits include 3x faster speeds, 24/7 expert support, automatic backups, free SSL, built-in CDN, advanced security, and easy scalability."
         }
       },
       {
@@ -145,7 +144,7 @@ const Index = () => {
         "name": "Does Cloudways offer free migration?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, Cloudways provides completely free website migration for new customers. Their migration experts handle the entire process including file transfers, database migration, DNS setup, and testing to ensure everything works perfectly on your new cloud server with zero downtime."
+          "text": "Yes, Cloudways provides free website migration including files, databases, DNS setup, and testing with zero downtime."
         }
       },
       {
@@ -153,7 +152,7 @@ const Index = () => {
         "name": "How much does Cloudways cost compared to shared hosting?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Cloudways plans start at $14/month for cloud hosting, which often costs less than premium shared hosting plans when you factor in all included features. Most users save 30-70% long-term due to better performance, no renewal price hikes, included SSL, CDN, backups, and no hidden fees that shared hosts often charge for essential features."
+          "text": "Cloudways starts at $14/month and often costs less than premium shared hosting when factoring in included features like SSL, CDN, and backups."
         }
       }
     ]
@@ -163,7 +162,7 @@ const Index = () => {
     "@context": "https://schema.org",
     "@type": "HowTo",
     "name": "How to Migrate Your Website to Cloudways Cloud Hosting",
-    "description": "Complete step-by-step guide to migrate your website from shared hosting to Cloudways managed cloud hosting with zero downtime",
+    "description": "Complete step-by-step guide to migrate from shared hosting to Cloudways",
     "totalTime": "PT48H",
     "estimatedCost": {
       "@type": "MonetaryAmount",
@@ -173,24 +172,24 @@ const Index = () => {
     "step": [
       {
         "@type": "HowToStep",
-        "name": "Create your Cloudways account",
-        "text": "Sign up for a free Cloudways account and choose your preferred cloud provider (AWS, Google Cloud, DigitalOcean, or Linode)",
-        "url": "https://www.cloudways.com/en/?id=1384181"
+        "name": "Create Cloudways account",
+        "text": "Sign up and choose your cloud provider",
+        "url": affiliateLink
       },
       {
-        "@type": "HowToStep", 
-        "name": "Submit free migration request",
-        "text": "Use the migration request form in your Cloudways dashboard to provide your current hosting details and website information"
+        "@type": "HowToStep",
+        "name": "Submit migration request",
+        "text": "Use the migration form in your dashboard"
       },
       {
         "@type": "HowToStep",
         "name": "Expert migration process",
-        "text": "Cloudways migration experts handle the complete transfer including files, databases, and configurations within 24-48 hours with zero downtime"
+        "text": "Cloudways experts handle the complete transfer within 24-48 hours"
       },
       {
         "@type": "HowToStep",
         "name": "Go live and optimize",
-        "text": "After migration completion, update your DNS, verify everything works correctly, and enjoy improved performance and features"
+        "text": "Update DNS and verify everything works correctly"
       }
     ]
   };
@@ -215,10 +214,10 @@ const Index = () => {
             </Badge>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
               Cloudways Savings Calculator: 
-              <span className="text-blue-600"> Instantly Compare Shared Hosting vs. Cloud Hosting Costs</span>
+              <span className="text-blue-600"> Compare Hosting Costs</span>
             </h1>
             <h2 className="text-xl md:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto">
-              Use our free, specialist-built calculator to see exactly how much you can save by migrating from shared hosting to Cloudways' managed cloud hosting—no technical skills required.
+              Use our free calculator to see exactly how much you can save by migrating from shared hosting to Cloudways managed cloud hosting.
             </h2>
           </div>
 
@@ -226,7 +225,7 @@ const Index = () => {
           <Card className="max-w-4xl mx-auto mb-12 shadow-lg">
             <CardContent className="p-8">
               <p className="text-lg text-gray-700 leading-relaxed">
-                Cloudways is a leading managed cloud hosting platform that empowers website owners to upgrade from traditional shared hosting to high-performance cloud servers. Enjoy lightning-fast speeds, 24/7 expert support, free SSL, automated backups, and enterprise-grade security—all with easy, one-click setup. Whether you run a business, e-commerce store, or blog, Cloudways makes cloud hosting simple, affordable, and reliable.
+                Cloudways is a leading managed cloud hosting platform that empowers website owners to upgrade from traditional shared hosting to high-performance cloud servers. Enjoy lightning-fast speeds, 24/7 expert support, free SSL, automated backups, and enterprise-grade security—all with easy, one-click setup.
               </p>
             </CardContent>
           </Card>
@@ -236,7 +235,7 @@ const Index = () => {
             <CardHeader className="text-center bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-t-lg">
               <CardTitle className="flex items-center justify-center gap-2 text-2xl">
                 <Calculator className="w-6 h-6" />
-                Advanced Cloud Hosting Cost Calculator (Built by Hosting Specialists)
+                Advanced Cloud Hosting Cost Calculator
               </CardTitle>
             </CardHeader>
             <CardContent className="p-8">
@@ -244,20 +243,23 @@ const Index = () => {
                 {/* Left Column */}
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">Current Monthly Hosting Cost ($)</label>
+                    <label htmlFor="current-cost" className="block text-sm font-medium mb-2">Current Monthly Hosting Cost ($)</label>
                     <Input
+                      id="current-cost"
                       type="number"
                       placeholder="e.g., 25"
                       value={currentCost}
                       onChange={(e) => setCurrentCost(e.target.value)}
                       className="text-lg"
+                      aria-describedby="current-cost-help"
                     />
+                    <p id="current-cost-help" className="text-xs text-gray-500 mt-1">Enter your current monthly hosting fee</p>
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium mb-2">Monthly Visitors</label>
+                    <label htmlFor="visitors" className="block text-sm font-medium mb-2">Monthly Visitors</label>
                     <Select value={visitors} onValueChange={setVisitors}>
-                      <SelectTrigger className="text-lg">
+                      <SelectTrigger id="visitors" className="text-lg" aria-label="Select monthly visitor range">
                         <SelectValue placeholder="Select visitor range" />
                       </SelectTrigger>
                       <SelectContent>
@@ -270,8 +272,9 @@ const Index = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Storage Used (GB)</label>
+                    <label htmlFor="storage" className="block text-sm font-medium mb-2">Storage Used (GB)</label>
                     <Input
+                      id="storage"
                       type="number"
                       placeholder="e.g., 10"
                       value={storage}
@@ -281,8 +284,9 @@ const Index = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Required Bandwidth (GB/month)</label>
+                    <label htmlFor="bandwidth" className="block text-sm font-medium mb-2">Required Bandwidth (GB/month)</label>
                     <Input
+                      id="bandwidth"
                       type="number"
                       placeholder="e.g., 100"
                       value={bandwidth}
@@ -292,8 +296,9 @@ const Index = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Number of Websites Hosted</label>
+                    <label htmlFor="websites" className="block text-sm font-medium mb-2">Number of Websites Hosted</label>
                     <Input
+                      id="websites"
                       type="number"
                       placeholder="e.g., 1"
                       value={websites}
@@ -306,9 +311,9 @@ const Index = () => {
                 {/* Right Column */}
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-2">SSL Certificate Needed?</label>
+                    <label htmlFor="ssl" className="block text-sm font-medium mb-2">SSL Certificate Needed?</label>
                     <Select value={sslNeeded} onValueChange={setSslNeeded}>
-                      <SelectTrigger className="text-lg">
+                      <SelectTrigger id="ssl" className="text-lg" aria-label="Select SSL requirement">
                         <SelectValue placeholder="Select SSL requirement" />
                       </SelectTrigger>
                       <SelectContent>
@@ -319,9 +324,9 @@ const Index = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Need for Compliance</label>
+                    <label htmlFor="compliance" className="block text-sm font-medium mb-2">Need for Compliance</label>
                     <Select value={compliance} onValueChange={setCompliance}>
-                      <SelectTrigger className="text-lg">
+                      <SelectTrigger id="compliance" className="text-lg" aria-label="Select compliance needs">
                         <SelectValue placeholder="Select compliance needs" />
                       </SelectTrigger>
                       <SelectContent>
@@ -333,9 +338,9 @@ const Index = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">RAM/Memory Required</label>
+                    <label htmlFor="ram" className="block text-sm font-medium mb-2">RAM/Memory Required</label>
                     <Select value={ramRequired} onValueChange={setRamRequired}>
-                      <SelectTrigger className="text-lg">
+                      <SelectTrigger id="ram" className="text-lg" aria-label="Select RAM requirement">
                         <SelectValue placeholder="Select RAM requirement" />
                       </SelectTrigger>
                       <SelectContent>
@@ -348,8 +353,9 @@ const Index = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Number of Production Environments</label>
+                    <label htmlFor="environments" className="block text-sm font-medium mb-2">Number of Production Environments</label>
                     <Input
+                      id="environments"
                       type="number"
                       placeholder="e.g., 1"
                       value={environments}
@@ -359,9 +365,9 @@ const Index = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium mb-2">Backup Frequency</label>
+                    <label htmlFor="backup" className="block text-sm font-medium mb-2">Backup Frequency</label>
                     <Select value={backupFreq} onValueChange={setBackupFreq}>
-                      <SelectTrigger className="text-lg">
+                      <SelectTrigger id="backup" className="text-lg" aria-label="Select backup frequency">
                         <SelectValue placeholder="Select backup frequency" />
                       </SelectTrigger>
                       <SelectContent>
@@ -388,7 +394,6 @@ const Index = () => {
                     </div>
                   </div>
                   
-                  {/* Plan breakdown */}
                   <div className="mb-4 p-4 bg-white rounded border">
                     <h4 className="font-bold mb-2">Recommended Cloudways Specs:</h4>
                     <ul className="text-sm text-gray-700 space-y-1">
@@ -416,6 +421,7 @@ const Index = () => {
                     <Button 
                       className="flex-1 bg-green-600 hover:bg-green-700 text-lg py-3"
                       onClick={() => window.open(affiliateLink, '_blank')}
+                      aria-label="Start migration to Cloudways and save money"
                     >
                       Start My Migration and Save →
                     </Button>
@@ -424,16 +430,16 @@ const Index = () => {
                         variant="outline" 
                         onClick={shareOnTwitter}
                         className="flex items-center gap-2"
+                        aria-label="Share your savings calculation on Twitter"
                       >
                         <Twitter className="w-4 h-4" />
-                        Share
+                        Share Savings
                       </Button>
                     )}
                   </div>
                 </div>
               )}
 
-              {/* Trust Badges */}
               <div className="mt-8 pt-6 border-t">
                 <div className="flex flex-wrap justify-center items-center gap-4 text-sm text-gray-600">
                   <div className="flex items-center gap-1">
@@ -449,9 +455,6 @@ const Index = () => {
                     30-Day Guarantee
                   </div>
                 </div>
-                <p className="text-center text-xs text-gray-500 mt-2">
-                  As seen on HostAdvice, TechRadar, PCMag
-                </p>
               </div>
             </CardContent>
           </Card>
@@ -460,47 +463,46 @@ const Index = () => {
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-center mb-8">Why Switch to Cloudways?</h2>
             
-            {/* Quick Facts */}
             <div className="grid md:grid-cols-3 gap-6 mb-12">
               <Card className="text-center p-6">
                 <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Zap className="w-6 h-6 text-green-600" />
                 </div>
                 <h3 className="font-bold text-lg mb-2">Average 67% Savings</h3>
-                <p className="text-gray-600">Most users save significantly compared to premium shared hosting plans</p>
+                <p className="text-gray-600">Most users save significantly compared to premium shared hosting</p>
               </Card>
               <Card className="text-center p-6">
                 <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Users className="w-6 h-6 text-blue-600" />
                 </div>
                 <h3 className="font-bold text-lg mb-2">24/7 Expert Support</h3>
-                <p className="text-gray-600">Real hosting experts, not just tier-1 support representatives</p>
+                <p className="text-gray-600">Real hosting experts, not just tier-1 support</p>
               </Card>
               <Card className="text-center p-6">
                 <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Shield className="w-6 h-6 text-purple-600" />
                 </div>
-                <h3 className="font-bold text-lg mb-2">Free SSL & CDN Included</h3>
+                <h3 className="font-bold text-lg mb-2">Free SSL & CDN</h3>
                 <p className="text-gray-600">Essential features included at no extra cost</p>
               </Card>
             </div>
 
-            {/* Enhanced Comparison Table */}
+            {/* Comparison Table */}
             <Card className="max-w-6xl mx-auto">
               <CardHeader>
-                <CardTitle className="text-center">Comprehensive: Shared Hosting vs. Cloudways</CardTitle>
+                <CardTitle className="text-center">Shared Hosting vs. Cloudways Comparison</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="overflow-x-auto">
-                  <table className="w-full">
+                  <table className="w-full" role="table">
                     <thead>
                       <tr className="border-b">
-                        <th className="text-left py-3">Feature</th>
-                        <th className="text-center py-3">Shared Hosting</th>
-                        <th className="text-center py-3 text-blue-600">Cloudways</th>
+                        <th className="text-left py-3" scope="col">Feature</th>
+                        <th className="text-center py-3" scope="col">Shared Hosting</th>
+                        <th className="text-center py-3 text-blue-600" scope="col">Cloudways</th>
                       </tr>
                     </thead>
-                    <tbody className="space-y-2">
+                    <tbody>
                       <tr className="border-b">
                         <td className="py-3">Server Resources</td>
                         <td className="text-center py-3">
@@ -534,31 +536,9 @@ const Index = () => {
                         <td className="py-3">Scalability</td>
                         <td className="text-center py-3">
                           <X className="w-5 h-5 text-red-500 mx-auto" />
-                          <span className="block text-sm text-gray-600">Limited</span>
                         </td>
                         <td className="text-center py-3">
                           <Check className="w-5 h-5 text-green-500 mx-auto" />
-                          <span className="block text-sm text-gray-600">Auto-scaling</span>
-                        </td>
-                      </tr>
-                      <tr className="border-b">
-                        <td className="py-3">Security</td>
-                        <td className="text-center py-3">
-                          <span className="text-yellow-600">Basic</span>
-                        </td>
-                        <td className="text-center py-3">
-                          <span className="text-green-600">Enterprise-grade</span>
-                        </td>
-                      </tr>
-                      <tr className="border-b">
-                        <td className="py-3">Compliance (PCI/HIPAA)</td>
-                        <td className="text-center py-3">
-                          <X className="w-5 h-5 text-red-500 mx-auto" />
-                          <span className="block text-sm text-gray-600">Not available</span>
-                        </td>
-                        <td className="text-center py-3">
-                          <Check className="w-5 h-5 text-green-500 mx-auto" />
-                          <span className="block text-sm text-gray-600">Available</span>
                         </td>
                       </tr>
                     </tbody>
@@ -570,7 +550,7 @@ const Index = () => {
 
           {/* Real User Stories */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-8">Real User Stories</h2>
+            <h2 className="text-3xl font-bold text-center mb-8">Real User Success Stories</h2>
             <div className="grid md:grid-cols-3 gap-6">
               <Card className="p-6">
                 <div className="mb-4">
@@ -582,6 +562,11 @@ const Index = () => {
                       <p className="font-semibold">Sarah Johnson</p>
                       <p className="text-sm text-gray-600">E-commerce Store Owner</p>
                     </div>
+                  </div>
+                  <div className="flex items-center gap-1 mb-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    ))}
                   </div>
                   <p className="text-gray-700 italic">"Migrated from Bluehost, now saving $41/month! My site loads 3x faster and customer complaints about slow checkout are gone."</p>
                 </div>
@@ -599,6 +584,11 @@ const Index = () => {
                       <p className="text-sm text-gray-600">Digital Agency</p>
                     </div>
                   </div>
+                  <div className="flex items-center gap-1 mb-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
                   <p className="text-gray-700 italic">"Switched from SiteGround. The 24/7 support actually knows what they're talking about. Saving $28/month per client site."</p>
                 </div>
                 <div className="text-green-600 font-bold">Saved: $336/year per site</div>
@@ -615,6 +605,11 @@ const Index = () => {
                       <p className="text-sm text-gray-600">Food Blogger</p>
                     </div>
                   </div>
+                  <div className="flex items-center gap-1 mb-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star key={star} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
                   <p className="text-gray-700 italic">"My blog went from crashing during viral posts to handling 50k visitors smoothly. The automatic backups saved me once already!"</p>
                 </div>
                 <div className="text-green-600 font-bold">Saved: $180/year</div>
@@ -622,7 +617,7 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Expert Articles Section */}
+          {/* EMBEDDED EXPERT ARTICLES SECTION - FINALLY IMPLEMENTED */}
           <section className="mb-16">
             <h2 className="text-3xl font-bold text-center mb-8">Expert Insights & Guides</h2>
             
@@ -636,22 +631,23 @@ const Index = () => {
                   </div>
                   <h3 className="text-xl font-bold mb-4">10 Reasons to Move from Shared Hosting to Cloud Hosting</h3>
                   <div className="text-gray-700 space-y-3">
-                    <p><strong>1. Performance:</strong> Dedicated resources mean your site speed doesn't depend on other websites.</p>
-                    <p><strong>2. Scalability:</strong> Instantly scale resources during traffic spikes without downtime.</p>
-                    <p><strong>3. Security:</strong> Enterprise-grade security with isolated environments and advanced firewalls.</p>
-                    <p><strong>4. Reliability:</strong> 99.9%+ uptime with redundant infrastructure across multiple data centers.</p>
-                    <p><strong>5. Support:</strong> Expert-level support from cloud specialists, not general customer service.</p>
-                    <p><strong>6. Compliance:</strong> PCI DSS and HIPAA compliance options for regulated industries.</p>
-                    <p><strong>7. Control:</strong> Full server access with SSH, custom configurations, and software installations.</p>
-                    <p><strong>8. Backup & Recovery:</strong> Automated backups with one-click restore functionality.</p>
-                    <p><strong>9. Global CDN:</strong> Built-in content delivery network for faster global load times.</p>
-                    <p><strong>10. Cost Efficiency:</strong> Pay only for resources you use, with transparent pricing.</p>
+                    <p><strong>1. Performance:</strong> Dedicated resources mean your site speed doesn't depend on other websites sharing your server.</p>
+                    <p><strong>2. Scalability:</strong> Instantly scale resources during traffic spikes without any downtime or service interruption.</p>
+                    <p><strong>3. Security:</strong> Enterprise-grade security with isolated environments, advanced firewalls, and regular security updates.</p>
+                    <p><strong>4. Reliability:</strong> 99.9%+ uptime guarantee with redundant infrastructure across multiple data centers globally.</p>
+                    <p><strong>5. Support:</strong> Get expert-level support from cloud specialists who understand server management, not just general customer service.</p>
+                    <p><strong>6. Compliance:</strong> PCI DSS and HIPAA compliance options available for regulated industries and e-commerce sites.</p>
+                    <p><strong>7. Control:</strong> Full server access with SSH, custom configurations, and the ability to install any software you need.</p>
+                    <p><strong>8. Backup & Recovery:</strong> Automated daily backups with one-click restore functionality to protect your data.</p>
+                    <p><strong>9. Global CDN:</strong> Built-in content delivery network ensures faster loading times for visitors worldwide.</p>
+                    <p><strong>10. Cost Efficiency:</strong> Pay only for the resources you actually use, with transparent pricing and no hidden fees.</p>
                   </div>
                   <Button 
                     className="w-full mt-4 bg-blue-600 hover:bg-blue-700"
                     onClick={() => window.open(affiliateLink, '_blank')}
+                    aria-label="Start your cloud migration with Cloudways"
                   >
-                    Start Your Cloud Migration →
+                    Start Your Cloud Migration <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
               </article>
@@ -668,33 +664,37 @@ const Index = () => {
                     <div>
                       <h4 className="font-semibold text-gray-900">Phase 1: Preparation (Day 1)</h4>
                       <ul className="mt-2 space-y-1 text-sm">
-                        <li>• Sign up for your Cloudways account</li>
-                        <li>• Choose your cloud provider (AWS, Google Cloud, etc.)</li>
-                        <li>• Select server size based on your traffic</li>
+                        <li>• Sign up for your Cloudways account using our calculator link</li>
+                        <li>• Choose your preferred cloud provider (AWS, Google Cloud, DigitalOcean, or Linode)</li>
+                        <li>• Select the right server size based on your traffic and resource needs</li>
+                        <li>• Set up your server location closest to your target audience</li>
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900">Phase 2: Migration (Day 1-2)</h4>
+                      <h4 className="font-semibold text-gray-900">Phase 2: Migration Process (Day 1-2)</h4>
                       <ul className="mt-2 space-y-1 text-sm">
-                        <li>• Submit free migration request</li>
-                        <li>• Cloudways experts handle file transfer</li>
-                        <li>• Database migration with zero downtime</li>
+                        <li>• Submit your free migration request through the dashboard</li>
+                        <li>• Provide your current hosting details and website information</li>
+                        <li>• Cloudways migration experts handle complete file and database transfer</li>
+                        <li>• Zero downtime migration ensures your site stays online throughout</li>
                       </ul>
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900">Phase 3: Go Live (Day 2-3)</h4>
                       <ul className="mt-2 space-y-1 text-sm">
-                        <li>• DNS propagation and SSL setup</li>
-                        <li>• Performance testing and optimization</li>
-                        <li>• 24/7 monitoring activation</li>
+                        <li>• Update your DNS settings to point to the new Cloudways server</li>
+                        <li>• SSL certificate installation and security configuration</li>
+                        <li>• Performance testing and caching optimization</li>
+                        <li>• 24/7 monitoring activation and backup scheduling</li>
                       </ul>
                     </div>
                   </div>
                   <Button 
                     className="w-full mt-4 bg-green-600 hover:bg-green-700"
                     onClick={() => window.open(affiliateLink, '_blank')}
+                    aria-label="Get free migration assistance from Cloudways"
                   >
-                    Get Free Migration →
+                    Get Free Migration <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
               </article>
@@ -714,75 +714,92 @@ const Index = () => {
                         <div>SiteGround Pro: $287/year</div>
                         <div>Cloudways: $168/year</div>
                         <div>Bluehost Choice Plus: $215/year</div>
-                        <div className="font-bold text-green-600">Savings: $119/year</div>
+                        <div className="font-bold text-green-600">Your Savings: $119/year</div>
                       </div>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900">Performance Metrics</h4>
+                      <h4 className="font-semibold text-gray-900">Performance Metrics Comparison</h4>
                       <ul className="mt-2 space-y-1 text-sm">
-                        <li>• <strong>Load Time:</strong> 40% faster than shared hosting</li>
-                        <li>• <strong>Uptime:</strong> 99.99% vs 99.5% shared hosting</li>
-                        <li>• <strong>TTFB:</strong> Under 200ms globally with CDN</li>
-                        <li>• <strong>Concurrent Users:</strong> 10x more capacity</li>
+                        <li>• <strong>Load Time:</strong> 40% faster than traditional shared hosting</li>
+                        <li>• <strong>Uptime:</strong> 99.99% vs 99.5% shared hosting average</li>
+                        <li>• <strong>TTFB:</strong> Under 200ms globally with built-in CDN</li>
+                        <li>• <strong>Concurrent Users:</strong> 10x more capacity for traffic spikes</li>
+                        <li>• <strong>Database Performance:</strong> 3x faster query execution</li>
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900">Hidden Costs Avoided</h4>
+                      <h4 className="font-semibold text-gray-900">Hidden Costs You Avoid</h4>
                       <ul className="mt-2 space-y-1 text-sm">
-                        <li>• No renewal price increases</li>
-                        <li>• Free SSL certificates included</li>
-                        <li>• No CDN subscription fees</li>
-                        <li>• Free migration and setup</li>
+                        <li>• No renewal price increases (shared hosts often double prices)</li>
+                        <li>• Free SSL certificates included (saves $50-100/year)</li>
+                        <li>• No CDN subscription fees (saves $60-120/year)</li>
+                        <li>• Free migration and setup assistance</li>
+                        <li>• No extra charges for backups or security features</li>
                       </ul>
                     </div>
                   </div>
                   <Button 
                     className="w-full mt-4 bg-purple-600 hover:bg-purple-700"
                     onClick={() => window.open(affiliateLink, '_blank')}
+                    aria-label="Calculate your personal savings with Cloudways"
                   >
-                    See Your Savings →
+                    See Your Savings <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
               </article>
             </div>
           </section>
 
-          {/* FAQ Section */}
+          {/* Enhanced FAQ Section */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions About Cloudways Savings</h2>
+            <h2 className="text-3xl font-bold text-center mb-8">Frequently Asked Questions About Cloudways</h2>
             <div className="max-w-4xl mx-auto space-y-6">
               <Card>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-3">How do I migrate my website to Cloudways?</h3>
-                  <p className="text-gray-700">Cloudways offers free migration services for new customers. Simply sign up for an account, submit a migration request through your dashboard, and their expert team will handle the entire process within 24-48 hours with zero downtime. No technical skills required - they handle everything from file transfers to database migration.</p>
+                  <p className="text-gray-700">Cloudways offers completely free migration services for new customers. Simply sign up for an account, submit a migration request through your dashboard, and their expert team will handle the entire process within 24-48 hours with zero downtime. No technical skills required - they handle everything from file transfers to database migration and DNS configuration.</p>
                 </CardContent>
               </Card>
               
               <Card>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-3">Is Cloudways shared hosting?</h3>
-                  <p className="text-gray-700">No, Cloudways is managed cloud hosting, not shared hosting. You get dedicated cloud server resources from top providers like AWS, Google Cloud, DigitalOcean, and Linode. This means better performance, security, and reliability compared to traditional shared hosting where resources are shared among multiple websites.</p>
+                  <p className="text-gray-700">No, Cloudways is managed cloud hosting, not shared hosting. You get dedicated cloud server resources from top providers like AWS, Google Cloud, DigitalOcean, and Linode. This means dramatically better performance, security, and reliability compared to traditional shared hosting where resources are shared among multiple websites on the same server.</p>
                 </CardContent>
               </Card>
               
               <Card>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-3">What are the main benefits of moving from shared hosting to Cloudways?</h3>
-                  <p className="text-gray-700">Key benefits include: 3x faster loading speeds with dedicated resources, 24/7 expert support from cloud specialists, automatic daily backups with one-click restore, free SSL certificates, built-in CDN for global performance, advanced security with firewalls and malware protection, easy scalability during traffic spikes, and compliance options for PCI/HIPAA requirements.</p>
+                  <p className="text-gray-700">Key benefits include: 3x faster loading speeds with dedicated resources, 24/7 expert support from cloud specialists (not generic customer service), automatic daily backups with one-click restore, free SSL certificates, built-in CDN for global performance, advanced security with firewalls and malware protection, easy scalability during traffic spikes, and compliance options for PCI/HIPAA requirements.</p>
                 </CardContent>
               </Card>
               
               <Card>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-3">Does Cloudways offer free migration?</h3>
-                  <p className="text-gray-700">Yes, Cloudways provides completely free website migration for new customers. Their migration experts handle the entire process including file transfers, database migration, DNS setup, and testing to ensure everything works perfectly on your new cloud server with zero downtime.</p>
+                  <p className="text-gray-700">Yes, Cloudways provides completely free website migration for all new customers. Their migration experts handle the entire process including file transfers, database migration, DNS setup, SSL installation, and comprehensive testing to ensure everything works perfectly on your new cloud server with zero downtime guaranteed.</p>
                 </CardContent>
               </Card>
               
               <Card>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-3">How much does Cloudways cost compared to shared hosting?</h3>
-                  <p className="text-gray-700">Cloudways plans start at $14/month for cloud hosting, which often costs less than premium shared hosting plans when you factor in all included features. Most users save 30-70% long-term due to better performance, no renewal price hikes, included SSL, CDN, backups, and no hidden fees that shared hosts often charge for essential features.</p>
+                  <p className="text-gray-700">Cloudways plans start at $14/month for cloud hosting, which often costs the same or less than premium shared hosting plans when you factor in all included features. Most users save 30-70% long-term due to better performance, no renewal price hikes, included SSL, CDN, backups, and no hidden fees that shared hosts often charge for essential features.</p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold mb-3">What cloud providers does Cloudways support?</h3>
+                  <p className="text-gray-700">Cloudways supports five major cloud providers: DigitalOcean, AWS (Amazon Web Services), Google Cloud Platform, Linode, and Vultr. Each provider offers different advantages - DigitalOcean for simplicity and cost-effectiveness, AWS for enterprise features, Google Cloud for performance, Linode for developer-friendly tools, and Vultr for high-frequency computing.</p>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold mb-3">Can I scale my Cloudways server resources?</h3>
+                  <p className="text-gray-700">Yes, Cloudways offers vertical scaling that allows you to increase or decrease your server resources (RAM, CPU, storage) with just a few clicks. This is perfect for handling traffic spikes during sales, viral content, or seasonal increases. You can scale up instantly, and scaling down is available on most cloud providers (some require server cloning).</p>
                 </CardContent>
               </Card>
             </div>
@@ -793,10 +810,11 @@ const Index = () => {
             <CardContent className="p-8 text-center">
               <Download className="w-12 h-12 text-blue-600 mx-auto mb-4" />
               <h3 className="text-2xl font-bold mb-4">Free Migration Checklist</h3>
-              <p className="text-gray-700 mb-6">Get our comprehensive step-by-step checklist to ensure a smooth migration to Cloudways.</p>
+              <p className="text-gray-700 mb-6">Get our comprehensive step-by-step checklist to ensure a smooth migration to Cloudways with zero downtime.</p>
               <Button 
                 className="bg-blue-600 hover:bg-blue-700"
                 onClick={handleLeadMagnet}
+                aria-label="Download free migration checklist"
               >
                 Download Free Checklist
               </Button>
@@ -812,6 +830,7 @@ const Index = () => {
                 size="lg"
                 className="bg-white text-green-600 hover:bg-gray-100 text-lg px-8 py-3"
                 onClick={() => window.open(affiliateLink, '_blank')}
+                aria-label="Start your free trial with Cloudways today"
               >
                 Start Your Free Trial Today
                 <ExternalLink className="w-4 h-4 ml-2" />
@@ -826,6 +845,7 @@ const Index = () => {
             <Button 
               className="w-full bg-white text-green-600 hover:bg-gray-100 font-bold"
               onClick={() => window.open(affiliateLink, '_blank')}
+              aria-label="Calculate savings and start free trial"
             >
               Calculate Your Savings & Start Free Trial →
             </Button>
@@ -834,10 +854,10 @@ const Index = () => {
 
         {/* Exit Intent Popup */}
         {showExitIntent && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" role="dialog" aria-labelledby="exit-intent-title">
             <Card className="max-w-md mx-auto">
               <CardContent className="p-6 text-center">
-                <h3 className="text-xl font-bold mb-4">Wait! Get 25% OFF</h3>
+                <h3 id="exit-intent-title" className="text-xl font-bold mb-4">Wait! Get 25% OFF</h3>
                 <p className="text-gray-700 mb-6">Get 25% OFF your first 3 months with Cloudways using our exclusive link!</p>
                 <div className="flex gap-3">
                   <Button 
@@ -846,12 +866,14 @@ const Index = () => {
                       window.open(affiliateLink + '&promo=SAVE25', '_blank');
                       setShowExitIntent(false);
                     }}
+                    aria-label="Claim 25% discount offer"
                   >
                     Claim Discount
                   </Button>
                   <Button 
                     variant="outline" 
                     onClick={() => setShowExitIntent(false)}
+                    aria-label="Close discount popup"
                   >
                     Close
                   </Button>
@@ -867,7 +889,7 @@ const Index = () => {
             <Separator className="mb-4" />
             <p className="text-sm">
               *Disclosure: I earn commissions if you sign up for Cloudways using my links. This helps support free resources like this calculator. 
-              <a href="#" className="text-blue-600 hover:underline ml-1">Learn more</a>
+              <a href="#disclosure" className="text-blue-600 hover:underline ml-1 focus:outline-none focus:ring-2 focus:ring-blue-500">Learn more</a>
             </p>
             <p className="text-xs mt-2">
               All affiliate links use rel="sponsored" and UTM parameters for tracking compliance.
