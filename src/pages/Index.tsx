@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Calculator, Shield, Zap, Users, Check, X, ExternalLink, Download, Twitter, Server, Globe, Lock, Star, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -927,7 +928,7 @@ const Index = () => {
               <Card>
                 <CardContent className="p-6">
                   <h3 className="text-xl font-bold mb-3">What are the main benefits of moving from shared hosting to Cloudways?</h3>
-                  <p className="text-gray-700">Key benefits include: 3x faster loading speeds with dedicated resources, 24/7 expert support from cloud specialists (not generic customer service), automatic daily backups with one-click restore, free SSL certificates, built-in CDN for global performance, advanced security with firewalls and malware protection, easy scalability during traffic spikes, and compliance options for PCI/HIPAA requirements.</p>
+                  <p className="text-gray-700">Key benefits include: 3x faster loading speeds with dedicated resources, 24/7 expert support from cloud specialists (not generic customer service), automatic daily backups with one-click restore, free SSL certificates, built-in CDN for global performance, advanced security with firewalls and malware protection, easy scalability during traffic spikes, and compliance options for PCI DSS and HIPAA requirements.</p>
                 </CardContent>
               </Card>
               
