@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calculator, Shield, Zap, Check } from 'lucide-react';
+import { Calculator as CalculatorIcon, Shield, Zap, Check } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import Calculator from '@/components/Calculator';
+import CalculatorComponent from '@/components/Calculator';
 import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
 import ExpertArticles from '@/components/ExpertArticles';
@@ -65,7 +65,10 @@ const Index = () => {
           </div>
         </header>
 
-        <Calculator onShowLeadMagnet={() => setShowLeadMagnet(true)} />
+        <CalculatorComponent 
+          onShowLeadMagnet={() => setShowLeadMagnet(true)}
+          onSavingsChange={setTotalSavings}
+        />
         
         <Testimonials />
 

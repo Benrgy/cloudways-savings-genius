@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Calculator as CalculatorIcon, ArrowRight, Twitter, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -9,9 +8,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 
 interface CalculatorProps {
   onShowLeadMagnet: () => void;
+  onSavingsChange?: (savings: number) => void;
 }
 
-const Calculator: React.FC<CalculatorProps> = ({ onShowLeadMagnet }) => {
+const Calculator: React.FC<CalculatorProps> = ({ onShowLeadMagnet, onSavingsChange }) => {
   const [currentCost, setCurrentCost] = useState(12);
   const [monthlyVisitors, setMonthlyVisitors] = useState(10000);
   const [storageGB, setStorageGB] = useState(10);
@@ -57,17 +57,24 @@ const Calculator: React.FC<CalculatorProps> = ({ onShowLeadMagnet }) => {
     if (ramGB >= 4) recommendedPlan = 'AWS 4GB';
     if (ramGB >= 8) recommendedPlan = 'Google Cloud 8GB';
     
-    setResults({
+    const newResults = {
       cloudwaysCost: cloudwaysCost,
       totalSavings: Math.max(totalSavings, 0),
       performanceGain: performanceGain,
       recommendedPlan: recommendedPlan
-    });
+    };
+    
+    setResults(newResults);
+    
+    // Call the callback to update parent component
+    if (onSavingsChange) {
+      onSavingsChange(newResults.totalSavings);
+    }
   };
 
   useEffect(() => {
     calculateAdvancedSavings();
-  }, [currentCost, monthlyVisitors, storageGB, bandwidthGB, numberOfSites, ramGB, sslCertificates, backupFrequency, complianceNeeds, currentProvider]);
+  }, [currentCost, monthlyVisitors, storageGB, bandwidthGB, numberOfSites, ramGB, sslCertificates, backupFrequency, complianceNeeds, currentProvider, onSavingsChange]);
 
   const shareResults = (platform: string) => {
     const text = `I could save $${results.totalSavings}/year by switching to Cloudways! Calculate your savings:`;
