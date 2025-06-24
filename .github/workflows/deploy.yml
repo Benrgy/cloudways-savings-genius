@@ -1,9 +1,9 @@
-name: Deploy to GitHub Pages
+name: Deploy Vite Site to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main   # or 'master' if that's your default branch
 
 permissions:
   contents: read
@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build project
+      - name: Build site
         run: npm run build
 
       - name: Upload build artifact
