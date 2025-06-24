@@ -4,6 +4,7 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
+  base: "/cloudways-savings-genius/", // ADD THIS LINE
   server: {
     host: "::",
     port: 8080,
@@ -18,5 +19,4 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: '/benrg.github.io/' Since this will be the base directory
 }));
