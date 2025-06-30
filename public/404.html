@@ -7,17 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
       // Single Page App redirect for GitHub Pages
-      // This script handles client-side routing for SPAs on GitHub Pages
       console.log('404.html loaded, redirecting to main page...');
       
-      // Get the current path
+      // Get the current path and search
       var path = window.location.pathname;
+      var search = window.location.search;
+      var hash = window.location.hash;
       var redirect = '/cloudways-savings-genius/';
       
       // If we're not already at the base path, redirect there
+      // Preserve any hash for client-side routing
       if (path !== redirect) {
         console.log('Redirecting from', path, 'to', redirect);
-        window.location.replace(redirect);
+        var newUrl = redirect + (hash ? hash : '');
+        window.location.replace(newUrl);
       }
     </script>
   </head>

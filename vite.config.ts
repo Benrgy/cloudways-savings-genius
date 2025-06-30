@@ -24,15 +24,21 @@ export default defineConfig(({ mode }) => ({
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
-    minify: 'esbuild', // Changed from 'terser' to 'esbuild' (default)
+    minify: 'esbuild',
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
           router: ['react-router-dom'],
           ui: ['@radix-ui/react-toast', '@radix-ui/react-dialog', '@radix-ui/react-accordion']
-        }
+        },
+        // Add cache busting for better deployment reliability
+        entryFileNames: 'assets/[name]-[hash].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
       }
-    }
+    },
+    // Ensure clean builds
+    emptyOutDir: true
   }
 }));
