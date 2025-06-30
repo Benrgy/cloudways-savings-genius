@@ -41,15 +41,45 @@
     <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
     <link rel="manifest" href="./site.webmanifest">
 
-    <!-- Performance optimizations -->
-    <link rel="preload" href="./src/main.tsx" as="script" type="module">
-    
-    <!-- Cache control -->
-    <meta http-equiv="Cache-Control" content="public, max-age=31536000">
+    <!-- Debug and error handling -->
+    <script>
+      console.log('Index.html loaded at:', new Date().toISOString());
+      console.log('Current URL:', window.location.href);
+      console.log('Base path should be: /cloudways-savings-genius/');
+      
+      // Global error handler
+      window.addEventListener('error', function(e) {
+        console.error('Global error caught:', e.error);
+        console.error('Error stack:', e.error?.stack);
+      });
+      
+      // Unhandled promise rejection handler
+      window.addEventListener('unhandledrejection', function(e) {
+        console.error('Unhandled promise rejection:', e.reason);
+      });
+    </script>
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif;">
+        <div style="text-align: center;">
+          <h2>Loading Cloudways Savings Calculator...</h2>
+          <p>If this message persists, please check the console for errors.</p>
+        </div>
+      </div>
+    </div>
     <script type="module" src="./src/main.tsx"></script>
+    
+    <script>
+      // Fallback check if React doesn't load within 10 seconds
+      setTimeout(function() {
+        var root = document.getElementById('root');
+        if (root && root.innerHTML.includes('Loading Cloudways Savings Calculator')) {
+          console.error('React app failed to load within 10 seconds');
+          root.innerHTML = '<div style="text-align: center; margin-top: 50px; font-family: Arial, sans-serif;"><h2>Loading Error</h2><p>The application failed to load. Please refresh the page or check your internet connection.</p><button onclick="window.location.reload()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Refresh Page</button></div>';
+        }
+      }, 10000);
+    </script>
   </body>
 </html>

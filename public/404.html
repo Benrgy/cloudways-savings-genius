@@ -4,12 +4,27 @@
   <head>
     <meta charset="utf-8">
     <title>Cloudways Savings Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
-      // Redirect to main page for SPA routing
-      window.location.replace('/cloudways-savings-genius/');
+      // Single Page App redirect for GitHub Pages
+      // This script handles client-side routing for SPAs on GitHub Pages
+      console.log('404.html loaded, redirecting to main page...');
+      
+      // Get the current path
+      var path = window.location.pathname;
+      var redirect = '/cloudways-savings-genius/';
+      
+      // If we're not already at the base path, redirect there
+      if (path !== redirect) {
+        console.log('Redirecting from', path, 'to', redirect);
+        window.location.replace(redirect);
+      }
     </script>
   </head>
   <body>
-    <p>Redirecting...</p>
+    <div style="text-align: center; margin-top: 50px; font-family: Arial, sans-serif;">
+      <h2>Redirecting to Cloudways Savings Calculator...</h2>
+      <p>If you are not redirected automatically, <a href="/cloudways-savings-genius/">click here</a>.</p>
+    </div>
   </body>
 </html>
