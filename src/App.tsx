@@ -23,9 +23,6 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
-  console.log('App component rendering...');
-  console.log('Current location:', window.location.href);
-  
   return (
     <ErrorBoundary>
       <QueryClientProvider client={queryClient}>

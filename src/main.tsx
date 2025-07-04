@@ -3,13 +3,6 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 
-console.log('main.tsx loading...');
-console.log('Environment:', import.meta.env.MODE);
-console.log('Base URL:', import.meta.env.BASE_URL);
-
-// Add performance monitoring
-const startTime = performance.now();
-
 const rootElement = document.getElementById("root");
 
 if (!rootElement) {
@@ -17,16 +10,9 @@ if (!rootElement) {
   throw new Error('Root element with id "root" not found');
 }
 
-console.log('Root element found, creating React root...');
-
 try {
   const root = createRoot(rootElement);
-  console.log('React root created, rendering App...');
-  
   root.render(<App />);
-  
-  const endTime = performance.now();
-  console.log(`App rendered successfully in ${endTime - startTime}ms`);
 } catch (error) {
   console.error('Failed to render React app:', error);
   
