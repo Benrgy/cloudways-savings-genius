@@ -25,20 +25,31 @@ export default defineConfig(({ mode }) => ({
     assetsDir: 'assets',
     sourcemap: false,
     minify: 'esbuild',
+    target: 'esnext',
+    cssCodeSplit: true,
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
           router: ['react-router-dom'],
-          ui: ['@radix-ui/react-toast', '@radix-ui/react-dialog', '@radix-ui/react-accordion']
+          ui: ['@radix-ui/react-toast', '@radix-ui/react-dialog', '@radix-ui/react-accordion'],
+          utils: ['@/lib/utils', 'clsx', 'tailwind-merge']
         },
-        // Add cache busting for better deployment reliability
         entryFileNames: 'assets/[name]-[hash].js',
         chunkFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]'
+        assetFileNames: (assetInfo) => {
+          if (!assetInfo.name) return 'assets/[name]-[hash].[ext]';
+          const info = assetInfo.name.split('.');
+          const ext = info[info.length - 1];
+          if (/\.(css)$/.test(assetInfo.name)) {
+            return `assets/[name]-[hash].${ext}`;
+          }
+          return `assets/[name]-[hash].[ext]`;
+        }
       }
     },
-    // Ensure clean builds
-    emptyOutDir: true
+    emptyOutDir: true,
+    assetsInlineLimit: 4096,
+    chunkSizeWarningLimit: 2000
   }
 }));
