@@ -89,10 +89,10 @@ const Calculator: React.FC<CalculatorProps> = ({ onShowLeadMagnet, onSavingsChan
     <Card className="mb-12 shadow-lg">
       <CardHeader>
         <CardTitle className="flex items-center gap-3 text-2xl">
-          <CalculatorIcon className="w-8 h-8 text-blue-600" />
+          <CalculatorIcon className="w-8 h-8 text-primary" />
           Advanced Hosting Cost Calculator
         </CardTitle>
-        <p className="text-gray-600">Enter your current hosting details for a personalized savings calculation</p>
+        <p className="text-muted-foreground">Enter your current hosting details for a personalized savings calculation</p>
       </CardHeader>
       <CardContent>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -214,31 +214,31 @@ const Calculator: React.FC<CalculatorProps> = ({ onShowLeadMagnet, onSavingsChan
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-6 border border-green-200">
-          <h3 className="text-xl font-bold text-gray-900 mb-4">Your Personalized Results</h3>
+        <div className="gradient-secondary rounded-lg p-6 border border-border shadow-success">
+          <h3 className="text-xl font-bold text-card-foreground mb-4">Your Personalized Results</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-600">${results.cloudwaysCost}/mo</div>
-              <div className="text-sm text-gray-600">Cloudways Cost</div>
+              <div className="text-2xl font-bold text-secondary">${results.cloudwaysCost}/mo</div>
+              <div className="text-sm text-muted-foreground">Cloudways Cost</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600">${results.totalSavings}/year</div>
-              <div className="text-sm text-gray-600">Annual Savings</div>
+              <div className="text-2xl font-bold text-primary">${results.totalSavings}/year</div>
+              <div className="text-sm text-muted-foreground">Annual Savings</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600">{results.performanceGain}%</div>
-              <div className="text-sm text-gray-600">Speed Improvement</div>
+              <div className="text-2xl font-bold text-accent">{results.performanceGain}%</div>
+              <div className="text-sm text-muted-foreground">Speed Improvement</div>
             </div>
             <div className="text-center">
-              <div className="text-sm font-medium text-gray-900">{results.recommendedPlan}</div>
-              <div className="text-sm text-gray-600">Recommended Plan</div>
+              <div className="text-sm font-medium text-foreground">{results.recommendedPlan}</div>
+              <div className="text-sm text-muted-foreground">Recommended Plan</div>
             </div>
           </div>
           
           <div className="flex flex-wrap gap-3 mt-6 justify-center">
             <Button 
               size="lg" 
-              className="bg-green-600 hover:bg-green-700"
+              className="gradient-secondary text-secondary-foreground hover:shadow-glow transition-smooth"
               onClick={() => window.open(affiliateLink, '_blank')}
             >
               Start Your Migration

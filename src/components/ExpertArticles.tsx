@@ -13,10 +13,10 @@ const ExpertArticles: React.FC = () => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center gap-3 mb-4">
-              <Server className="w-8 h-8 text-blue-600" />
+              <Server className="w-8 h-8 text-primary" />
               <h3 className="text-xl font-semibold">10 Reasons to Switch</h3>
             </div>
-            <p className="text-gray-600 mb-4">
+            <p className="text-muted-foreground mb-4">
               Discover why thousands are moving from shared hosting to managed cloud hosting.
             </p>
             <Link to="/articles/ten-reasons">
@@ -31,10 +31,10 @@ const ExpertArticles: React.FC = () => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center gap-3 mb-4">
-              <Globe className="w-8 h-8 text-green-600" />
+              <Globe className="w-8 h-8 text-secondary" />
               <h3 className="text-xl font-semibold">Migration Guide</h3>
             </div>
-            <p className="text-gray-600 mb-4">
+            <p className="text-muted-foreground mb-4">
               Step-by-step instructions for a seamless migration with zero downtime.
             </p>
             <Link to="/articles/migration-guide">
@@ -49,10 +49,10 @@ const ExpertArticles: React.FC = () => {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center gap-3 mb-4">
-              <Calculator className="w-8 h-8 text-purple-600" />
+              <Calculator className="w-8 h-8 text-accent" />
               <h3 className="text-xl font-semibold">Cost Comparison</h3>
             </div>
-            <p className="text-gray-600 mb-4">
+            <p className="text-muted-foreground mb-4">
               Detailed breakdown comparing Cloudways vs SiteGround, Bluehost, and others.
             </p>
             <Link to="/articles/cost-comparison">

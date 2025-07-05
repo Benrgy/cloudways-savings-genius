@@ -33,9 +33,9 @@ const Modals: React.FC<ModalsProps> = ({
       {/* Exit Intent Popup */}
       {showExitIntent && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full">
+        <div className="bg-card text-card-foreground rounded-lg p-6 max-w-md w-full shadow-elegant">
             <h3 className="text-xl font-bold mb-4">Wait! Don't Miss Out</h3>
-            <p className="text-gray-600 mb-4">
+          <p className="text-muted-foreground mb-4">
               Get our free migration checklist before you go - it includes step-by-step instructions and expert tips!
             </p>
             <div className="flex gap-3">
@@ -53,9 +53,9 @@ const Modals: React.FC<ModalsProps> = ({
       {/* Lead Magnet Modal */}
       {showLeadMagnet && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg p-6 max-w-md w-full">
+          <div className="bg-card text-card-foreground rounded-lg p-6 max-w-md w-full shadow-elegant">
             <h3 className="text-xl font-bold mb-4">Free Migration Checklist</h3>
-            <p className="text-gray-600 mb-4">
+            <p className="text-muted-foreground mb-4">
               Get our comprehensive 25-point migration checklist used by over 10,000 successful migrations.
             </p>
             <div className="space-y-3 mb-4">

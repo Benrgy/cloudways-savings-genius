@@ -41,7 +41,7 @@ const Index = () => {
   return (
     <>
       <PerformanceMonitor />
-      <div className="min-h-screen bg-gradient-subtle">
+      <div className="min-h-screen gradient-subtle">
       <StickyCTA totalSavings={totalSavings} />
 
       <Modals
