@@ -39,10 +39,10 @@ const Modals: React.FC<ModalsProps> = ({
               Get our free migration checklist before you go - it includes step-by-step instructions and expert tips!
             </p>
             <div className="flex gap-3">
-              <Button onClick={() => setShowLeadMagnet(true)} className="flex-1">
+              <Button onClick={() => setShowLeadMagnet(true)} className="flex-1" aria-label="Get free migration checklist">
                 Get Free Checklist
               </Button>
-              <Button variant="outline" onClick={() => setShowExitIntent(false)}>
+              <Button variant="outline" onClick={() => setShowExitIntent(false)} aria-label="Close exit intent modal">
                 Close
               </Button>
             </div>
@@ -63,11 +63,11 @@ const Modals: React.FC<ModalsProps> = ({
               <Input placeholder="Your Name" />
             </div>
             <div className="flex gap-3">
-              <Button onClick={handleLeadMagnetDownload} className="flex-1">
+              <Button onClick={handleLeadMagnetDownload} className="flex-1" aria-label="Download free migration guide PDF">
                 <Download className="w-4 h-4 mr-2" />
                 Download Free PDF
               </Button>
-              <Button variant="outline" onClick={() => setShowLeadMagnet(false)}>
+              <Button variant="outline" onClick={() => setShowLeadMagnet(false)} aria-label="Close lead magnet modal">
                 Close
               </Button>
             </div>

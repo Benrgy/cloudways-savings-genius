@@ -17,6 +17,7 @@ const StickyCTA: React.FC<StickyCtaProps> = ({ totalSavings }) => {
           size="sm" 
           className="bg-background text-primary hover:bg-muted transition-smooth"
           onClick={() => window.open(affiliateLink, '_blank')}
+          aria-label="Start your Cloudways migration now"
         >
           Start Now
         </Button>

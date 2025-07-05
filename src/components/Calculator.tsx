@@ -244,11 +244,11 @@ const Calculator: React.FC<CalculatorProps> = ({ onShowLeadMagnet, onSavingsChan
               Start Your Migration
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
-            <Button variant="outline" onClick={() => shareResults('twitter')}>
+            <Button variant="outline" onClick={() => shareResults('twitter')} aria-label="Share calculator results on Twitter">
               <Twitter className="w-4 h-4 mr-2" />
               Share Results
             </Button>
-            <Button variant="outline" onClick={onShowLeadMagnet}>
+            <Button variant="outline" onClick={onShowLeadMagnet} aria-label="Get free migration guide PDF">
               <Download className="w-4 h-4 mr-2" />
               Get Migration Guide
             </Button>
