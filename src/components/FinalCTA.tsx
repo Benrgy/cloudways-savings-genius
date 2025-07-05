@@ -13,10 +13,10 @@ const FinalCTA: React.FC<FinalCtaProps> = ({ totalSavings, onShowLeadMagnet }) =
   const affiliateLink = "https://www.cloudways.com/en/?id=1384181&utm_source=calculator&utm_medium=main&utm_campaign=savings";
 
   return (
-    <Card className="text-center gradient-hero text-white shadow-glow">
+    <Card className="text-center gradient-hero text-primary-foreground shadow-glow">
       <CardContent className="p-8">
         <h2 className="text-3xl font-bold mb-4">Ready to Save ${totalSavings}/Year?</h2>
-        <p className="text-xl mb-6 text-white/80">
+        <p className="text-xl mb-6 text-primary-foreground/80">
           Join over 100,000 websites that have migrated to Cloudways
         </p>
         <div className="flex flex-wrap justify-center gap-4">
@@ -32,7 +32,7 @@ const FinalCTA: React.FC<FinalCtaProps> = ({ totalSavings, onShowLeadMagnet }) =
           <Button 
             size="lg" 
             variant="outline" 
-            className="border-white text-white hover:bg-white hover:text-primary text-lg px-8 py-3 transition-smooth"
+            className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary text-lg px-8 py-3 transition-smooth"
             onClick={onShowLeadMagnet}
             aria-label="Get free migration checklist PDF"
           >

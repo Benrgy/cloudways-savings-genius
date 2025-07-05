@@ -30,7 +30,7 @@ const TenReasons = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                    <span className="text-blue-600 font-bold">1</span>
+                    <span className="text-primary font-bold">1</span>
                   </div>
                   Dedicated Resources & Consistent Performance
                 </CardTitle>
@@ -46,7 +46,7 @@ const TenReasons = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                    <span className="text-green-600 font-bold">2</span>
+                    <span className="text-secondary font-bold">2</span>
                   </div>
                   Instant Scalability for Traffic Spikes
                 </CardTitle>
@@ -78,7 +78,7 @@ const TenReasons = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
-                    <span className="text-red-600 font-bold">4</span>
+                    <span className="text-destructive font-bold">4</span>
                   </div>
                   99.9%+ Uptime Guarantee
                 </CardTitle>
@@ -187,15 +187,15 @@ const TenReasons = () => {
             </Card>
           </div>
 
-          <Card className="mt-12 bg-gradient-to-r from-blue-600 to-green-600 text-white">
+          <Card className="mt-12 gradient-hero text-primary-foreground">
             <CardContent className="p-8 text-center">
               <h3 className="text-2xl font-bold mb-4">Ready to Make the Switch?</h3>
-              <p className="mb-6 text-blue-100">
+              <p className="mb-6 text-primary-foreground/80">
                 Join thousands of website owners who've upgraded to cloud hosting
               </p>
               <Button 
                 size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100 text-lg px-8 py-3"
+                className="bg-background text-primary hover:bg-muted text-lg px-8 py-3 transition-smooth"
                 onClick={() => window.open(affiliateLink, '_blank')}
                 aria-label="Start your cloud hosting migration with Cloudways"
               >
