@@ -5,7 +5,8 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 export default defineConfig(({ mode }) => ({
-  base: "/cloudways-savings-genius/",
+  // Remove the GitHub Pages base path for Netlify
+  base: "/",
   server: {
     host: "::",
     port: 8080,
