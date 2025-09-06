@@ -1,0 +1,7 @@
+# SPA fallback for Netlify
+/*    /index.html   200
+
+# Specific routes with proper status codes
+/articles/ten-reasons /index.html 200
+/articles/migration-guide /index.html 200
+/articles/cost-comparison /index.html 200
