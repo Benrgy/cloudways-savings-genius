@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, DollarSign, TrendingDown, AlertTriangle, CheckCircle2, XCircle } from 'lucide-react';
+import Breadcrumbs from '@/components/Breadcrumbs';
 
 const CostComparison = () => {
   return (
@@ -33,13 +34,9 @@ const CostComparison = () => {
 
       <div className="min-h-screen bg-background">
         <div className="container mx-auto px-4 py-12 max-w-5xl">
-          <nav className="mb-8 text-sm text-muted-foreground">
-            <Link to="/" className="hover:text-primary transition-smooth">Home</Link>
-            <span className="mx-2">/</span>
-            <span className="text-foreground">Cost Comparison</span>
-          </nav>
-
-          <header className="mb-12">
+          <Breadcrumbs />
+          
+          <header className="mb-12 mt-4">
             <Badge variant="secondary" className="mb-4">Comprehensive Analysis • 18 min read</Badge>
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Complete Cost Comparison 2025: Cloudways vs Major Providers

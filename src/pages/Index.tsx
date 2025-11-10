@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Zap, Check } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import Breadcrumbs from '@/components/Breadcrumbs';
 import CalculatorComponent from '@/components/Calculator';
 import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
