@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import TenReasons from "./pages/Articles/TenReasons";
 import MigrationGuide from "./pages/Articles/MigrationGuide";
 import CostComparison from "./pages/Articles/CostComparison";
+import ProviderComparisonPage from "./pages/Comparison/ProviderComparison";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,6 +41,7 @@ const App = () => {
                     <Route path="/articles/ten-reasons" element={<TenReasons />} />
                     <Route path="/articles/migration-guide" element={<MigrationGuide />} />
                     <Route path="/articles/cost-comparison" element={<CostComparison />} />
+                    <Route path="/vs/:provider" element={<ProviderComparisonPage />} />
                     {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                     <Route path="*" element={<NotFound />} />
                   </Routes>

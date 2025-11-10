@@ -13,6 +13,7 @@ import StickyCTA from '@/components/StickyCTA';
 import FinalCTA from '@/components/FinalCTA';
 import PerformanceMonitor from '@/components/PerformanceMonitor';
 import ProviderComparison from '@/components/ProviderComparison';
+import ProviderComparisonLinks from '@/components/ProviderComparisonLinks';
 import CostVisualization from '@/components/CostVisualization';
 import MigrationTimeline from '@/components/MigrationTimeline';
 import { usePageAnalytics, useScrollAnalytics } from '@/hooks/use-page-analytics';
@@ -69,6 +70,8 @@ const Index = () => {
         />
 
         <ProviderComparison />
+
+        <ProviderComparisonLinks />
 
         <MigrationTimeline />
         
