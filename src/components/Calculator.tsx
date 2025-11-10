@@ -34,24 +34,79 @@ const Calculator: React.FC<CalculatorProps> = ({ onShowLeadMagnet, onSavingsChan
   const affiliateLink = "https://www.cloudways.com/en/?id=1384181&utm_source=calculator&utm_medium=main&utm_campaign=savings";
 
   const calculateAdvancedSavings = () => {
+    // Determine Cloudways cost based on RAM requirements
     let cloudwaysCost = 14;
-    let sharedHostingCost = currentCost;
-    
     if (ramGB >= 2) cloudwaysCost = 28;
     if (ramGB >= 4) cloudwaysCost = 56;
     if (ramGB >= 8) cloudwaysCost = 112;
     
-    if (sslCertificates > 1) sharedHostingCost += (sslCertificates - 1) * 6;
-    if (storageGB > 20) sharedHostingCost += Math.ceil((storageGB - 20) / 10) * 5;
-    if (complianceNeeds !== 'none') sharedHostingCost += 25;
-    if (numberOfSites > 1) sharedHostingCost += (numberOfSites - 1) * 8;
+    // Calculate year 1 shared hosting cost (promotional rate)
+    let year1Cost = currentCost;
     
-    const yearTwoSharedCost = sharedHostingCost * 2;
-    const yearTwoCloudwaysCost = cloudwaysCost;
+    // Calculate year 2+ shared hosting cost (renewal rate - typically 2.5-3.5x higher)
+    const renewalMultiplier = currentProvider === 'siteground' ? 4.5 : 
+                             currentProvider === 'godaddy' ? 4.0 :
+                             currentProvider === 'bluehost' ? 3.7 :
+                             currentProvider === 'hostgator' ? 3.6 : 3.5;
     
-    const totalSavings = (yearTwoSharedCost - yearTwoCloudwaysCost) * 12;
+    let year2Cost = currentCost * renewalMultiplier;
+    
+    // Add costs for additional features (both years)
+    const extraCosts = (provider: number) => {
+      let cost = provider;
+      
+      // SSL certificates (many providers charge for additional SSLs)
+      if (sslCertificates > 1 && currentProvider !== 'siteground') {
+        cost += (sslCertificates - 1) * 5.99;
+      }
+      
+      // Storage overage fees
+      if (storageGB > 20) {
+        const extraStorage = Math.ceil((storageGB - 20) / 10);
+        cost += extraStorage * (currentProvider === 'siteground' ? 5.99 : 4.99);
+      }
+      
+      // CDN costs (not included in shared hosting)
+      if (currentProvider !== 'siteground') {
+        cost += 9.99;
+      }
+      
+      // Backup costs (premium backups)
+      if (currentProvider !== 'siteground') {
+        cost += 2.99;
+      }
+      
+      // Compliance fees
+      if (complianceNeeds !== 'none') {
+        const complianceCost = currentProvider === 'wpengine' ? 49.99 :
+                              currentProvider === 'kinsta' ? 59.99 :
+                              currentProvider === 'siteground' ? 39.99 : 29.99;
+        cost += complianceCost;
+      }
+      
+      // Multi-site fees
+      if (numberOfSites > 1) {
+        const multiSiteFee = currentProvider === 'wpengine' ? 15.00 :
+                            currentProvider === 'kinsta' ? 20.00 : 8.99;
+        cost += (numberOfSites - 1) * multiSiteFee;
+      }
+      
+      return cost;
+    };
+    
+    year1Cost = extraCosts(year1Cost);
+    year2Cost = extraCosts(year2Cost);
+    
+    // Calculate 2-year total costs
+    const twoYearSharedCost = (year1Cost * 12) + (year2Cost * 12);
+    const twoYearCloudwaysCost = cloudwaysCost * 24;
+    
+    const totalSavings = Math.max(twoYearSharedCost - twoYearCloudwaysCost, 0);
+    
+    // Performance gain estimation based on traffic
     const performanceGain = Math.round(((monthlyVisitors / 1000) * 2.5));
     
+    // Recommend appropriate plan
     let recommendedPlan = 'DigitalOcean 1GB';
     if (ramGB >= 2) recommendedPlan = 'DigitalOcean 2GB';
     if (ramGB >= 4) recommendedPlan = 'AWS 4GB';
@@ -59,7 +114,7 @@ const Calculator: React.FC<CalculatorProps> = ({ onShowLeadMagnet, onSavingsChan
     
     const newResults = {
       cloudwaysCost: cloudwaysCost,
-      totalSavings: Math.max(totalSavings, 0),
+      totalSavings: Math.round(totalSavings),
       performanceGain: performanceGain,
       recommendedPlan: recommendedPlan
     };

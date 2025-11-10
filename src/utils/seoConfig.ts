@@ -10,13 +10,13 @@ export interface SEOConfig {
 
 export const seoConfigs: Record<string, SEOConfig> = {
   '/': {
-    title: 'Cloudways Savings Calculator - Save 40% on Cloud Hosting Costs',
-    description: 'Cut your cloud hosting costs by 40% with our proven Cloudways savings calculator. Compare prices, get instant estimates, and see why 50,000+ businesses switched.',
-    keywords: 'cloudways savings, cloud hosting calculator, hosting cost comparison, cloudways pricing, managed hosting savings',
-    ogTitle: 'Save 40% on Cloud Hosting - Cloudways Calculator',
-    ogDescription: 'Join 50,000+ businesses saving thousands on cloud hosting. Get instant cost comparison and migration guide.',
-    twitterTitle: 'Cut Cloud Hosting Costs by 40% Today',
-    twitterDescription: 'Free calculator shows exactly how much you can save switching to Cloudways managed hosting.'
+    title: 'Cloudways Calculator 2025 - Compare Real Hosting Costs & Save 40%',
+    description: 'Industry-leading Cloudways cost calculator with real provider pricing (Bluehost, SiteGround, HostGator, GoDaddy). See exact savings with charts, migration timeline, and expert comparisons.',
+    keywords: 'cloudways calculator, hosting cost comparison 2025, cloud hosting pricing, shared hosting vs cloudways, bluehost vs cloudways, siteground vs cloudways, hosting savings calculator, managed cloud hosting cost',
+    ogTitle: 'Cloudways Cost Calculator - Compare Real Hosting Prices 2025',
+    ogDescription: 'Calculate exact savings vs Bluehost, SiteGround, HostGator with interactive charts. Free migration, 24/7 support, 3x faster performance.',
+    twitterTitle: 'Compare Real Hosting Costs - Cloudways Calculator 2025',
+    twitterDescription: 'Interactive calculator shows exact savings vs major providers. See 5-year projections, hidden costs, and migration timeline.'
   },
   '/articles/ten-reasons': {
     title: '10 Proven Reasons to Switch to Cloudways Hosting in 2025',

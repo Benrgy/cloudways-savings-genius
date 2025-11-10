@@ -6,15 +6,21 @@ import { Badge } from '@/components/ui/badge';
 import CalculatorComponent from '@/components/Calculator';
 import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
+import EnhancedFAQ from '@/components/EnhancedFAQ';
 import ExpertArticles from '@/components/ExpertArticles';
 import PerformanceGuides from '@/components/PerformanceGuides';
 import StickyCTA from '@/components/StickyCTA';
 import FinalCTA from '@/components/FinalCTA';
 import PerformanceMonitor from '@/components/PerformanceMonitor';
+import ProviderComparison from '@/components/ProviderComparison';
+import CostVisualization from '@/components/CostVisualization';
+import MigrationTimeline from '@/components/MigrationTimeline';
 import { usePageAnalytics, useScrollAnalytics } from '@/hooks/use-page-analytics';
 
 const Index = () => {
   const [totalSavings, setTotalSavings] = useState(0);
+  const [cloudwaysCost, setCloudwaysCost] = useState(14);
+  const [providerCost, setProviderCost] = useState(12);
   
   // Analytics tracking
   usePageAnalytics('homepage');
@@ -56,11 +62,21 @@ const Index = () => {
           onSavingsChange={setTotalSavings}
         />
         
+        <CostVisualization 
+          cloudwaysCost={cloudwaysCost}
+          currentProviderCost={providerCost}
+          providerName="Your Current Provider"
+        />
+
+        <ProviderComparison />
+
+        <MigrationTimeline />
+        
         <Testimonials />
 
         <ExpertArticles />
 
-        <FAQ />
+        <EnhancedFAQ />
 
         <PerformanceGuides />
 
