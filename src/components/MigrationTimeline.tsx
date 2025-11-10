@@ -1,8 +1,60 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
+import { Check, FileText, Server, Rocket } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Check, Clock, FileText, Server, TestTube, Rocket } from 'lucide-react';
 
 const MigrationTimeline = () => {
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Migrate to Cloudways Cloud Hosting",
+    "description": "Step-by-step guide for migrating your website from shared hosting to Cloudways with zero downtime",
+    "totalTime": "PT48H",
+    "estimatedCost": {
+      "@type": "MonetaryAmount",
+      "currency": "USD",
+      "value": "0"
+    },
+    "step": [
+      {
+        "@type": "HowToStep",
+        "name": "Sign Up & Request Migration",
+        "text": "Create your Cloudways account and submit migration request through the dashboard. Provide your current hosting credentials. Choose your preferred cloud provider and select server size based on your needs.",
+        "position": 1
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Expert Migration Team Assigned",
+        "text": "A certified migration specialist reviews your website and creates a migration plan. Team analyzes your site architecture and dependencies with custom migration strategy for complex setups.",
+        "position": 2
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Migration Execution",
+        "text": "Migration team transfers all files, databases, and configurations while your live site remains untouched. All website files transferred via secure connection with database integrity checks.",
+        "position": 3
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Testing & Verification",
+        "text": "Comprehensive testing ensures everything works perfectly before going live. Functionality testing of all site features, performance benchmarking, SSL installation, and integration verification.",
+        "position": 4
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Your Approval",
+        "text": "Review the migrated site on temporary URL and approve when ready to go live. Access preview URL to test and compare with live site side-by-side.",
+        "position": 5
+      },
+      {
+        "@type": "HowToStep",
+        "name": "Go Live & Post-Migration",
+        "text": "DNS updated to point to Cloudways with zero downtime cutover. DNS changes guided step-by-step with propagation monitoring. 30 days of post-migration support included.",
+        "position": 6
+      }
+    ]
+  };
+
   const steps = [
     {
       icon: FileText,
@@ -27,7 +79,7 @@ const MigrationTimeline = () => {
       ]
     },
     {
-      icon: Clock,
+      icon: Server,
       title: 'Migration Execution',
       duration: '12-24 hours',
       description: 'Migration team transfers all files, databases, and configurations. Your live site remains untouched.',
@@ -40,7 +92,7 @@ const MigrationTimeline = () => {
       ]
     },
     {
-      icon: TestTube,
+      icon: Check,
       title: 'Testing & Verification',
       duration: '2-4 hours',
       description: 'Comprehensive testing ensures everything works perfectly before going live.',
@@ -80,7 +132,13 @@ const MigrationTimeline = () => {
   ];
 
   return (
-    <section className="mb-12">
+    <>
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(howToSchema)}
+        </script>
+      </Helmet>
+      <section className="mb-12">
       <div className="text-center mb-8">
         <h2 className="text-3xl font-bold mb-4">How Migration Works: Step-by-Step</h2>
         <p className="text-xl text-muted-foreground">
@@ -167,6 +225,7 @@ const MigrationTimeline = () => {
         </p>
       </div>
     </section>
+    </>
   );
 };
 
